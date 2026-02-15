@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Smart Automated Closet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Direct links instead of Jinja url_for -->
+    <link rel="stylesheet" href="static/css/style.css" />
+  </head>
+  <body>
+    <!--
+      Kiosk UI Layout (textual wireframe)
+      -----------------------------------
+      +--------------------------------------------------------------+
+      | Header: System title, status                                |
+      +---------------------------+----------------------------------+
+      | Left: Preferences form    | Right: Recommendation panel      |
+      | - Mood                    | - Recommended top + bottom       |
+      | - Occasion                | - YES / NO buttons               |
+      | - Weather                 | - Manual correction dropdowns    |
+      | - Time of day             |                                  |
+      | - Scan button             |                                  |
+      +---------------------------+----------------------------------+
+      | Footer: System messages / logs                              |
+      +--------------------------------------------------------------+
+    -->
+    <div id="app">
+      <header class="app-header">
+        <h1>Smart Automated Closet</h1>
+        <span id="system-status" class="status-indicator">Idle</span>
+      </header>
+
+      <main class="app-main">
+        <section class="panel panel-left">
+          <h2>User Preferences</h2>
+          <form id="prefs-form">
+            <label>
+              Mood
+              <select name="mood" id="mood">
+                <option value="neutral">Neutral</option>
+                <option value="happy">Happy</option>
+                <option value="tired">Tired</option>
+                <option value="energetic">Energetic</option>
+              </select>
+            </label>
+
+            <label>
+              Occasion
+              <select name="occasion" id="occasion">
+                <option value="casual">Casual</option>
+                <option value="formal">Formal</option>
+                <option value="party">Party</option>
+                <option value="sports">Sports</option>
+              </select>
+            </label>
+
+            <label>
+              Weather
+              <select name="weather" id="weather">
+                <option value="mild">Mild</option>
+                <option value="hot">Hot</option>
+                <option value="cold">Cold</option>
+              </select>
+            </label>
+
+            <label>
+              Time of Day
+              <select name="timeOfDay" id="timeOfDay">
+                <option value="day">Day</option>
+                <option value="night">Night</option>
+              </select>
+            </label>
+
+            <div class="button-row">
+              <button type="button" id="scan-btn" class="primary-btn">
+                Scan Carousel
+              </button>
+              <button type="button" id="recommend-btn" class="accent-btn">
+                Recommend Outfit
+              </button>
+            </div>
+          </form>
+
+          <div class="panel-sub">
+            <h3>Detected Items</h3>
+            <div id="items-list" class="items-list"></div>
+          </div>
+        </section>
+
+        <section class="panel panel-right">
+          <h2>Recommendation</h2>
+          <div id="recommendation-view" class="recommendation-view">
+            <p class="placeholder">
+              Press "Recommend Outfit" to generate a suggestion.
+            </p>
+          </div>
+
+          <div id="manual-correction" class="panel-sub">
+            <h3>Manual Correction</h3>
+            <p class="hint">
+              If the detected clothing type is wrong, you can correct it here
+              before confirming.
+            </p>
+            <div class="correction-row">
+              <label>
+                Top Type
+                <select id="manual-top-type">
+                  <option value="">(Use suggested)</option>
+                  <option value="shirt">Shirt</option>
+                  <option value="jacket">Jacket</option>
+                  <option value="tshirt">T-Shirt</option>
+                </select>
+              </label>
+              <label>
+                Bottom Type
+                <select id="manual-bottom-type">
+                  <option value="">(Use suggested)</option>
+                  <option value="pants">Pants</option>
+                  <option value="skirt">Skirt</option>
+                  <option value="shorts">Shorts</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="button-row confirm-row">
+            <button type="button" id="yes-btn" class="primary-btn large">
+              YES - Deliver
+            </button>
+            <button type="button" id="no-btn" class="secondary-btn large">
+              NO - Try Again
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span id="message-area">Welcome! Ready when you are.</span>
+      </footer>
+    </div>
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+Flask==3.0.0
+opencv-python==4.10.0.84
+numpy==1.26.4
+scikit-learn==1.4.2
+joblib==1.4.0
+Jinja2==3.1.3
+python-dotenv==1.0.1
+
+# On Raspberry Pi, you may need opencv-python-headless or system OpenCV.
+# For GPIO; these are optional and only needed on real hardware.
+RPi.GPIO==0.7.1
+pigpio==1.78
